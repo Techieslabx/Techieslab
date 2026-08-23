@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Techies Lab engineering software and digital technology services." />
+  <title>Techies Lab | Engineering • Software • Technology</title>
+  <link rel="preconnect" href="https://js.paystack.co" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+  <div class="site-bg"></div>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Techies Lab home">
+      <img src="assets/techies-lab-logo.jpg" alt="Techies Lab logo" />
+      <span><strong>TECHIES LAB</strong><small>ENGINEERING • SOFTWARE • TECHNOLOGY</small></span>
+    </a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav-links">
+      <a href="#products">Software</a><a href="#remote">Remote Installation</a><a href="#how">How It Works</a><a href="#payment">Payment</a>
+      <a class="nav-wa" href="https://wa.me/2349071766222" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-copy">
+        <div class="eyebrow">ENGINEERING SOFTWARE & DIGITAL SOLUTIONS</div>
+        <h1>POWER YOUR <span>IDEAS.</span><br>BUILD THE <span>FUTURE.</span></h1>
+        <p>Explore engineering and design software services, technical assistance, and optional remote installation support through one professional technology platform.</p>
+        <div class="hero-actions"><a class="btn primary" href="#products">EXPLORE SOFTWARE</a><a class="btn ghost" href="https://wa.me/2349071766222" target="_blank" rel="noopener">CHAT ON WHATSAPP</a></div>
+        <div class="hero-pills"><span>CAD & DESIGN</span><span>ENGINEERING</span><span>REMOTE SUPPORT</span></div>
+      </div>
+      <div class="hero-mark">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="hero-product-orbit" aria-hidden="true">
+          <span class="orbit-logo orbit-1"><img src="assets/products/autocad.png" alt=""></span>
+          <span class="orbit-logo orbit-2"><img src="assets/products/autocad-electrical.png" alt=""></span>
+          <span class="orbit-logo orbit-3"><img src="assets/orbit/civil3d.png" alt=""></span>
+          <span class="orbit-logo orbit-4"><img src="assets/orbit/revit.png" alt=""></span>
+          <span class="orbit-logo orbit-5"><img src="assets/orbit/navisworks.png" alt=""></span>
+          <span class="orbit-logo orbit-6"><img src="assets/orbit/maya.png" alt=""></span>
+          <span class="orbit-logo orbit-7"><img src="assets/products/inventor-nastran.png" alt=""></span>
+          <span class="orbit-logo orbit-8"><img src="assets/products/autocad-mep.png" alt=""></span>
+          <span class="orbit-logo orbit-9"><img src="assets/products/autocad-architecture.png" alt=""></span>
+        </div>
+        <img src="assets/techies-lab-logo.jpg" alt="Techies Lab emblem" />
+        <div class="tech-label">TECHIES LAB<br><small>DIGITAL ENGINEERING PLATFORM</small></div>
+      </div>
+    </section>
+
+    <section class="section products-section" id="products">
+      <div class="section-head"><div><div class="eyebrow">AVAILABLE SOFTWARE</div><h2>ENGINEERING SOFTWARE <span>COLLECTION</span></h2></div><p>Choose a product to view details and begin your order.</p></div>
+      <div class="toolbar"><input id="searchInput" type="search" placeholder="Search software..." aria-label="Search software" /><div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="cad">CAD</button><button class="filter" data-filter="electrical">Electrical</button><button class="filter" data-filter="architecture">Architecture</button><button class="filter" data-filter="engineering">Engineering</button></div></div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="remote section" id="remote">
+      <div class="remote-visual"><div class="scanline"></div><div class="screen-card"><span>REMOTE</span><strong>INSTALLATION</strong><small>LIVE TECHNICAL ASSISTANCE</small></div></div>
+      <div class="remote-copy"><div class="eyebrow orange">OPTIONAL TECHNICAL SERVICE</div><h2>REMOTE INSTALLATION <span>AVAILABLE</span></h2><p>Need help with installation? Add Remote Installation to your order and our technical team will handle the installation online from our workspace. After your payment is confirmed, we will arrange a remote session with you. You simply need a stable internet connection and should remain available while our team connects with you online and carries out the installation process on your computer.</p><div class="price-line"><span>EXTRA CHARGE</span><strong>$10.00</strong></div><a href="#products" class="btn primary">ADD TO YOUR ORDER</a></div>
+    </section>
+
+    <section class="section how" id="how"><div class="section-head center"><div><div class="eyebrow">SIMPLE ORDER PROCESS</div><h2>HOW IT <span>WORKS</span></h2></div></div><div class="steps"><article><b>01</b><h3>Choose Software</h3><p>Select the software service you need.</p></article><article><b>02</b><h3>Enter Your Details</h3><p>Add your name, email and country.</p></article><article><b>03</b><h3>Choose Payment</h3><p>Use Nigerian bank transfer or secure online checkout.</p></article><article><b>04</b><h3>Complete Order</h3><p>Keep your order reference and follow the next-step instructions.</p></article></div></section>
+
+    <section class="section payment" id="payment"><div class="section-head"><div><div class="eyebrow">SECURE ORDER CHECKOUT</div><h2>COMPLETE YOUR <span>ORDER</span></h2></div><p>Your selected software will appear here when you click Order Now.</p></div>
+      <div class="checkout-wrap">
+        <div class="checkout-summary"><div class="summary-top"><span>ORDER SUMMARY</span><button id="clearOrder">Clear</button></div><div id="emptyOrder" class="empty-order">No software selected yet.<br><a href="#products">Browse products</a></div><div id="orderDetails" hidden><h3 id="selectedProductName">—</h3><p id="selectedProductCategory">—</p><div class="summary-row"><span>Software</span><strong id="softwarePrice">$5.00</strong></div><label class="remote-check"><input type="checkbox" id="remoteInstallation" /><span><b>Add Remote Installation</b><small>Optional technical assistance</small></span><strong>+$10</strong></label><div class="summary-total"><span>TOTAL</span><strong id="totalPrice">$5.00</strong></div></div></div>
+        <form class="order-form" id="orderForm"><div class="form-grid"><label>Full Name<input required id="customerName" autocomplete="name" placeholder="Your full name" /></label><label>Email Address<input required type="email" id="customerEmail" autocomplete="email" placeholder="you@example.com" /></label><label>Country<input required id="customerCountry" autocomplete="country-name" placeholder="Your country" /></label><label>WhatsApp Number<input id="customerWhatsapp" autocomplete="tel" placeholder="Optional" /></label></div><div class="payment-methods"><h3>Choose Payment Method</h3><label class="method"><input type="radio" name="paymentMethod" value="bank" checked><span class="method-box"><b>Nigerian Bank Transfer</b><small>Pay directly to one of the bank accounts below</small></span></label><label class="method"><input type="radio" name="paymentMethod" value="paystack"><span class="method-box"><b>Secure Online Payment</b><small>Paystack checkout for eligible online payments</small></span></label></div>
+          <div class="bank-details" id="bankDetails"><h3>Direct Bank Transfer</h3><p>After transfer, click <b>I HAVE MADE PAYMENT</b> to send your order and payment reference to Techies Lab.</p><div class="bank-grid"><div class="bank"><span>ZENITH BANK PLC</span><strong>ADISA IYANU PRAISE</strong><code>2433136187</code></div><div class="bank"><span>KUDA BANK</span><strong>ADISA IYANU PRAISE</strong><code>2087478417</code></div></div><label>Payment Reference / Transaction ID<input id="transactionRef" placeholder="Enter your transfer reference" /></label><button class="btn primary full" type="button" id="bankPaymentBtn">I HAVE MADE PAYMENT</button></div>
+          <div class="online-details" id="onlineDetails" hidden><div class="secure-note">🔒 Secure checkout powered by Paystack. Website prices are displayed in USD, while secure checkout is processed in Nigerian Naira (NGN) at a fixed rate of ₦1,500 per $1. Your bank may display the equivalent amount in your local currency. Payment processing fees may be added at checkout where your Paystack configuration applies.</div><button class="btn orange-btn full" type="submit">PROCEED TO SECURE PAYMENT</button></div>
+          <p class="checkout-note">For assistance, contact <a href="https://wa.me/2349071766222" target="_blank" rel="noopener">Techies Lab on WhatsApp</a>. Independent platform. Third-party product names and trademarks belong to their respective owners.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section why"><div class="why-grid"><div><div class="eyebrow orange">WHY TECHIES LAB</div><h2>ENGINEERING KNOWLEDGE MEETS <span>DIGITAL POSSIBILITY.</span></h2></div><div class="why-items"><div>01 <span>Engineering-focused digital solutions</span></div><div>02 <span>Clear ordering and payment options</span></div><div>03 <span>Optional remote installation support</span></div><div>04 <span>Direct customer support on WhatsApp</span></div></div></div></section>
+  </main>
+
+  <footer><div class="footer-brand"><img src="assets/techies-lab-logo.jpg" alt="Techies Lab logo"><div><strong>TECHIES LAB</strong><small>ENGINEERING • SOFTWARE • TECHNOLOGY</small></div></div><p>© <span id="year"></span> Techies Lab. Independent technology platform.</p><div class="footer-contact"><a class="footer-icon whatsapp-icon" href="https://wa.me/2349071766222" target="_blank" rel="noopener" aria-label="Chat with Techies Lab on WhatsApp" title="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27.1 4.8A15.7 15.7 0 0 0 16 0C7.2 0 0 7.1 0 15.9c0 2.8.7 5.5 2.1 7.9L0 32l8.4-2.1a15.9 15.9 0 0 0 7.6 1.9h.1c8.8 0 15.9-7.1 15.9-15.9 0-4.2-1.7-8.2-4.9-11.1ZM16 29.1h-.1a13.1 13.1 0 0 1-6.7-1.8l-.5-.3-5 1.3 1.3-4.9-.3-.5a13.1 13.1 0 1 1 11.2 6.2Zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.7-.2-1 .2-.3.4-1.1 1.3-1.3 1.6-.2.3-.5.3-.9.1-2.6-1.3-4.3-2.4-6-5.4-.5-.9.5-.8 1.3-2.6.1-.3.1-.6 0-.8-.1-.2-1-2.4-1.4-3.3-.4-1-1.1-.8-1.5-.8h-.9c-.3 0-.8.1-1.2.6-.4.4-1.6 1.6-1.6 3.9s1.7 4.6 1.9 4.9c.2.3 3.3 5 8 7 .8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.5Z" fill="currentColor"/></svg></a><a class="footer-icon email-icon" href="mailto:techieslabsupports@gmail.com" aria-label="Email Techies Lab" title="techieslabsupports@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.2l9 5.7 9-5.7V7H3Zm18 10V9.6l-8.5 5.4a1 1 0 0 1-1 0L3 9.6V17h18Z" fill="currentColor"/></svg></a></div></footer>
+
+  <div class="modal" id="infoModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" id="closeModal">×</button><div class="modal-badge" id="modalBadge"></div><div class="eyebrow" id="modalCategory"></div><h2 id="modalTitle"></h2><p id="modalDescription"></p><ul id="modalFeatures"></ul><div class="modal-price"><span>PRICE</span><strong>$5.00</strong></div><button class="btn primary full" id="modalOrderBtn">ORDER THIS SOFTWARE</button></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
