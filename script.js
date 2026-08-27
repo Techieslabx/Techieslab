@@ -2,5 +2,74 @@ const P=[["AutoCAD 2024", "CAD & DESIGN", "autocad.png", "AVAILABLE NOW", "Ready
 function render(){products.innerHTML=P.map((p,i)=>`<article class="card"><div class="logo"><img src="assets/logos/${p[2]}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="fallback">${p[0].slice(0,2)}</div></div><div class="body"><span class="cat">${p[1]}</span><h3>${p[0]}</h3><span class="badge ${p[3].includes('NOW')?'now':'req'}">${p[3]}</span><div class="status">${p[4]}</div><p>${p[3].includes('REQUEST')?'This package requires additional preparation before delivery.':'Prepared for delivery.'}</p><div class="price">$4.99</div><div class="actions"><button class="btn secondary" onclick="info(${i})">INFORMATION</button><button class="btn primary" onclick="order(${i})">${p[3].includes('NOW')?'ORDER NOW':'REQUEST & ORDER'}</button></div></div></article>`).join('')}render();
 function open(id){document.querySelector('.backdrop').classList.add('open');document.getElementById(id).classList.add('open')}function closeAll(){document.querySelector('.backdrop').classList.remove('open');document.querySelectorAll('.modal').forEach(x=>x.classList.remove('open'))}function openRequest(){open('requestModal')}
 function info(i){let p=P[i];infoBody.innerHTML=`<p class="eyebrow">${p[1]}</p><h2>${p[0]}</h2><p class="muted">Professional software designed to support relevant engineering, design, architecture or technical workflows.</p><div class="box"><b>${p[3]}</b><br>${p[4]}</div><button class="btn primary" onclick="closeAll();order(${i})">CONTINUE →</button>`;open('infoModal')}
-function order(i){let p=P[i];orderBody.innerHTML=`<p class="eyebrow">YOUR ORDER</p><h2>${p[0]}</h2><div class="box"><p>Software Price: <b>$4.99</b></p><p><b>${p[3]}</b><br>${p[4]}</p><label><input type="checkbox" id="remote"> Add Remote Installation (+$10)</label><p class="total">TOTAL: <span id="total">$4.99</span></p></div><button class="btn primary" id="continuePay">CONTINUE TO PAYMENT →</button><div id="payOptions" hidden><div class="box"><b>INTERNATIONAL PAYMENT</b><p>USD pricing is preserved. Connect the approved Paystack international-payment configuration before activating live checkout.</p><button class="btn primary" onclick="alert('Add your approved Paystack public key and confirmed merchant payment configuration before live launch.')">PAY WITH PAYSTACK</button></div><div class="box"><b>ZENITH BANK PLC</b><br>ADISA IYANU PRAISE<br><strong>2433136187</strong></div><div class="box"><b>KUDA BANK</b><br>ADISA IYANU PRAISE<br><strong>2087478417</strong></div><a class="btn primary" href="https://wa.me/${W}?text=${encodeURIComponent('Hello Techies Lab Team,\n\nI have completed payment for '+p[0]+'.\n\nDelivery: '+p[4]+'\n\nThank you.')}" target="_blank">I HAVE MADE PAYMENT →</a></div>`;open('orderModal');setTimeout(()=>{remote.onchange=()=>total.textContent=remote.checked?'$14.99':'$4.99';continuePay.onclick=()=>payOptions.hidden=false},0)}
+function order(i){let p=P[i];orderBody.innerHTML=`<p class="eyebrow">YOUR ORDER</p><h2>${p[0]}</h2><div class="box"><p>Software Price: <b>$4.99</b></p><p><b>${p[3]}</b><br>${p[4]}</p><label><input type="checkbox" id="remote"> Add Remote Installation (+$10)</label><p class="total">TOTAL: <span id="total">$4.99</span></p></div><button class="btn primary" id="continuePay">CONTINUE TO PAYMENT →</button><div id="payOptions" hidden><div class="box"><b>INTERNATIONAL PAYMENT</b><p>USD pricing is preserved. Connect the approved Paystack international-payment configuration before activating live checkout.</p>
+
+<input type="email" id="payEmail" placeholder="Enter your email address" style="width:100%;margin:10px 0;padding:12px;border-radius:8px;border:1px solid #ffffff33;background:#08111f;color:white;">
+
+<button class="btn primary" id="payNow">PAY WITH PAYSTACK</button>
+
+</div><div class="box"><b>ZENITH BANK PLC</b><br>ADISA IYANU PRAISE<br><strong>2433136187</strong></div><div class="box"><b>KUDA BANK</b><br>ADISA IYANU PRAISE<br><strong>2087478417</strong></div><a class="btn primary" href="https://wa.me/${W}?text=${encodeURIComponent('Hello Techies Lab Team,\n\nI have completed payment for '+p[0]+'.\n\nDelivery: '+p[4]+'\n\nThank you.')}" target="_blank">I HAVE MADE PAYMENT →</a></div>`;open('orderModal');
+
+setTimeout(()=>{
+
+remote.onchange=()=>{
+total.textContent=remote.checked?'$14.99':'$4.99';
+};
+
+continuePay.onclick=()=>{
+payOptions.hidden=false;
+};
+
+payNow.onclick=()=>{
+
+let email=payEmail.value.trim();
+
+if(!email){
+alert('Please enter your email address.');
+payEmail.focus();
+return;
+}
+
+let amount=remote.checked?1499:499;
+
+const popup=new PaystackPop();
+
+popup.newTransaction({
+
+key:'pk_live_79b8a2a9c30b91528bb0d9866601a1e7181fff13',
+
+email:email,
+
+amount:amount,
+
+currency:'USD',
+
+metadata:{
+custom_fields:[
+{
+display_name:'Software',
+variable_name:'software',
+value:p[0]
+},
+{
+display_name:'Remote Installation',
+variable_name:'remote_installation',
+value:remote.checked?'Yes':'No'
+}
+]
+},
+
+onSuccess:(transaction)=>{
+alert('Payment successful. Reference: '+transaction.reference);
+},
+
+onCancel:()=>{
+alert('Payment was cancelled.');
+}
+
+});
+
+};
+
+},0)}
 requestForm.onsubmit=e=>{e.preventDefault();let d=Object.fromEntries(new FormData(requestForm));let msg=`TECHIES LAB — SOFTWARE REQUEST\n\nHello Techies Lab Team,\n\nI would like to request the following software:\n\n━━━━━━━━━━━━━━━━━━━━\n\nFULL NAME:\n${d.name}\n\nEMAIL ADDRESS:\n${d.email}\n\nSOFTWARE REQUESTED:\n${d.software}\n\nVERSION NEEDED:\n${d.version||'Not specified'}\n\nCATEGORY:\n${d.category||'Not specified'}\n\nADDITIONAL DETAILS:\n${d.details||'None'}\n\n━━━━━━━━━━━━━━━━━━━━\n\nPlease check availability and advise me on the delivery process.\n\nThank you.`;window.open('https://wa.me/'+W+'?text='+encodeURIComponent(msg),'_blank')};menu.onclick=()=>{document.querySelector('header').classList.toggle('open');menu.textContent=document.querySelector('header').classList.contains('open')?'×':'☰'};
