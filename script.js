@@ -72,4 +72,59 @@ alert('Payment was cancelled.');
 };
 
 },0)}
-requestForm.onsubmit=e=>{e.preventDefault();let d=Object.fromEntries(new FormData(requestForm));let msg=`TECHIES LAB — SOFTWARE REQUEST\n\nHello Techies Lab Team,\n\nI would like to request the following software:\n\n━━━━━━━━━━━━━━━━━━━━\n\nFULL NAME:\n${d.name}\n\nEMAIL ADDRESS:\n${d.email}\n\nSOFTWARE REQUESTED:\n${d.software}\n\nVERSION NEEDED:\n${d.version||'Not specified'}\n\nCATEGORY:\n${d.category||'Not specified'}\n\nADDITIONAL DETAILS:\n${d.details||'None'}\n\n━━━━━━━━━━━━━━━━━━━━\n\nPlease check availability and advise me on the delivery process.\n\nThank you.`;window.open('https://wa.me/'+W+'?text='+encodeURIComponent(msg),'_blank')};menu.onclick=()=>{document.querySelector('header').classList.toggle('open');menu.textContent=document.querySelector('header').classList.contains('open')?'×':'☰'};
+document.getElementById('requestForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = document.getElementById('requestForm');
+
+    const name = form.elements['name'].value;
+    const email = form.elements['email'].value;
+    const software = form.elements['software'].value;
+    const version = form.elements['version'].value || 'Not specified';
+    const category = form.elements['category'].value || 'Not specified';
+    const details = form.elements['details'].value || 'None';
+
+    const message =
+`TECHIES LAB — SOFTWARE REQUEST
+
+Hello Techies Lab Team,
+
+I would like to request the following software:
+
+━━━━━━━━━━━━━━━━━━━━
+
+FULL NAME:
+${name}
+
+EMAIL ADDRESS:
+${email}
+
+SOFTWARE REQUESTED:
+${software}
+
+VERSION NEEDED:
+${version}
+
+CATEGORY:
+${category}
+
+ADDITIONAL DETAILS:
+${details}
+
+━━━━━━━━━━━━━━━━━━━━
+
+Please check availability and advise me on the delivery process.
+
+Thank you.`;
+
+    const whatsappURL =
+        'https://wa.me/2349071766222?text=' +
+        encodeURIComponent(message);
+
+    window.location.href = whatsappURL;
+});
+
+menu.onclick=()=>{
+    document.querySelector('header').classList.toggle('open');
+    menu.textContent=document.querySelector('header').classList.contains('open')?'×':'☰';
+};
