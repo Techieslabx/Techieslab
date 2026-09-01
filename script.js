@@ -72,7 +72,60 @@ alert('Payment was cancelled.');
 
 };
 
-},0)}
+},0)}flutterPay.onclick=()=>{
+
+let email=payEmail.value.trim();
+
+if(!email){
+alert('Please enter your email address.');
+payEmail.focus();
+return;
+}
+
+let amount=remote.checked?14.99:4.99;
+
+FlutterwaveCheckout({
+
+public_key:'FLWPUBK-dba76c85563da3994c624bd5de2b595b-X',
+
+tx_ref:'TECHIESLAB-'+Date.now(),
+
+amount:amount,
+
+currency:'USD',
+
+customer:{
+email:email
+},
+
+customizations:{
+title:'Techies Lab',
+description:p[0] + (remote.checked?' + Remote Installation':''),
+logo:''
+},
+
+meta:{
+software:p[0],
+remote_installation:remote.checked?'Yes':'No'
+},
+
+callback:function(data){
+
+if(data.status==='successful'){
+alert('Payment successful. Reference: '+data.transaction_id);
+}else{
+alert('Payment was not completed.');
+}
+
+},
+
+onclose:function(){
+console.log('Flutterwave checkout closed.');
+}
+
+});
+
+};
 document.getElementById('requestForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
