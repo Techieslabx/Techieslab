@@ -7,6 +7,7 @@ function order(i){let p=P[i];orderBody.innerHTML=`<p class="eyebrow">YOUR ORDER<
 <input type="email" id="payEmail" placeholder="Enter your email address" style="width:100%;margin:10px 0;padding:12px;border-radius:8px;border:1px solid #ffffff33;background:#08111f;color:white;">
 
 <button class="btn primary" id="payNow">PAY WITH PAYSTACK</button>
+<button class="btn secondary" id="flutterPay">PAY WITH FLUTTERWAVE</button>
 
 </div><div class="box"><b>ZENITH BANK PLC</b><br>ADISA IYANU PRAISE<br><strong>2433136187</strong></div><div class="box"><b>KUDA BANK</b><br>ADISA IYANU PRAISE<br><strong>2087478417</strong></div><a class="btn primary" href="https://wa.me/${W}?text=${encodeURIComponent('Hello Techies Lab Team,\n\nI have completed payment for '+p[0]+'.\n\nDelivery: '+p[4]+'\n\nThank you.')}" target="_blank">I HAVE MADE PAYMENT →</a></div>`;open('orderModal');
 
