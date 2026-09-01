@@ -84,6 +84,13 @@ return;
 
 let amount=remote.checked?14.99:4.99;
 
+function startFlutterwave(){
+
+if(typeof FlutterwaveCheckout!=='function'){
+alert('Flutterwave checkout could not load. Please refresh the page and try again.');
+return;
+}
+
 FlutterwaveCheckout({
 
 public_key:'FLWPUBK-dba76c85563da3994c624bd5de2b595b-X',
@@ -100,7 +107,7 @@ email:email
 
 customizations:{
 title:'Techies Lab',
-description:p[0] + (remote.checked?' + Remote Installation':''),
+description:p[0]+(remote.checked?' + Remote Installation':''),
 logo:''
 },
 
@@ -124,6 +131,28 @@ console.log('Flutterwave checkout closed.');
 }
 
 });
+
+}
+
+if(typeof FlutterwaveCheckout==='function'){
+
+startFlutterwave();
+
+}else{
+
+let script=document.createElement('script');
+
+script.src='https://checkout.flutterwave.com/v3.js';
+
+script.onload=startFlutterwave;
+
+script.onerror=()=>{
+alert('Unable to load Flutterwave checkout. Please refresh the page and try again.');
+};
+
+document.head.appendChild(script);
+
+}
 
 };
 document.getElementById('requestForm').addEventListener('submit', function(e) {
