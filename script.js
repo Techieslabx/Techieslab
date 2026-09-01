@@ -72,7 +72,7 @@ alert('Payment was cancelled.');
 
 };
 
-},0)}document.getElementById('flutterPay').onclick=()=>{
+document.getElementById('flutterPay').onclick=()=>{
 
 let email=payEmail.value.trim();
 
@@ -84,10 +84,8 @@ return;
 
 let amount=remote.checked?14.99:4.99;
 
-function startFlutterwave(){
-
 if(typeof FlutterwaveCheckout!=='function'){
-alert('Flutterwave checkout could not load. Please refresh the page and try again.');
+alert('Flutterwave checkout is still loading. Please try again.');
 return;
 }
 
@@ -132,29 +130,9 @@ console.log('Flutterwave checkout closed.');
 
 });
 
-}
-
-if(typeof FlutterwaveCheckout==='function'){
-
-startFlutterwave();
-
-}else{
-
-let script=document.createElement('script');
-
-script.src='https://checkout.flutterwave.com/v3.js';
-
-script.onload=startFlutterwave;
-
-script.onerror=()=>{
-alert('Unable to load Flutterwave checkout. Please refresh the page and try again.');
 };
 
-document.head.appendChild(script);
-
-}
-
-};
+},0)}
 document.getElementById('requestForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
