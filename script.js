@@ -72,7 +72,7 @@ alert('Payment was cancelled.');
 
 };
 
-},0)}flutterPay.onclick=()=>{
+},0)}document.getElementById('flutterPay').onclick=()=>{
 
 let email=payEmail.value.trim();
 
