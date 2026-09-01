@@ -2,7 +2,7 @@ const P=[["AutoCAD 2024", "CAD & DESIGN", "autocad.png", "AVAILABLE NOW", "Ready
 function render(){products.innerHTML=P.map((p,i)=>`<article class="card"><div class="logo"><img src="assets/logos/${p[2]}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="fallback">${p[0].slice(0,2)}</div></div><div class="body"><span class="cat">${p[1]}</span><h3>${p[0]}</h3><span class="badge ${p[3].includes('NOW')?'now':'req'}">${p[3]}</span><div class="status">${p[4]}</div><p>${p[3].includes('REQUEST')?'This package requires additional preparation before delivery.':'Prepared for delivery.'}</p><div class="price">$4.99</div><div class="actions"><button class="btn secondary" onclick="info(${i})">INFORMATION</button><button class="btn primary" onclick="order(${i})">${p[3].includes('NOW')?'ORDER NOW':'REQUEST & ORDER'}</button></div></div></article>`).join('')}render();
 function open(id){document.querySelector('.backdrop').classList.add('open');document.getElementById(id).classList.add('open')}function closeAll(){document.querySelector('.backdrop').classList.remove('open');document.querySelectorAll('.modal').forEach(x=>x.classList.remove('open'))}function openRequest(){open('requestModal')}
 function info(i){let p=P[i];infoBody.innerHTML=`<p class="eyebrow">${p[1]}</p><h2>${p[0]}</h2><p class="muted">Professional software designed to support relevant engineering, design, architecture or technical workflows.</p><div class="box"><b>${p[3]}</b><br>${p[4]}</div><button class="btn primary" onclick="closeAll();order(${i})">CONTINUE →</button>`;open('infoModal')}
-function order(i){let p=P[i];orderBody.innerHTML=`<p class="eyebrow">YOUR ORDER</p><h2>${p[0]}</h2><div class="box"><p>Software Price: <b>$4.99</b></p><p><b>${p[3]}</b><br>${p[4]}</p><label><input type="checkbox" id="remote"> Add Remote Installation (+$10)</label><p class="total">TOTAL: <span id="total">$4.99</span></p></div><button class="btn primary" id="continuePay">CONTINUE TO PAYMENT →</button><div id="payOptions" hidden><div class="box"><b>INTERNATIONAL PAYMENT</b><p>USD pricing is preserved. Connect the approved Paystack international-payment configuration before activating live checkout.</p>
+function order(i){let p=P[i];let price=(p[0]==='AutoCAD 2024'||p[0]==='AutoCAD 2025')?3.99:4.99;orderBody.innerHTML=`<p class="eyebrow">YOUR ORDER</p><h2>${p[0]}</h2><div class="box"><p>Software Price: <b>$${price.toFixed(2)}</b></p><p><b>${p[3]}</b><br>${p[4]}</p><label><input type="checkbox" id="remote"> Add Remote Installation (+$10)</label><p class="total">TOTAL: <span id="total">$${price.toFixed(2)}</span></p></div><button class="btn primary" id="continuePay">CONTINUE TO PAYMENT →</button><div id="payOptions" hidden><div class="box"><b>INTERNATIONAL PAYMENT</b><p>USD pricing is preserved. Connect the approved Paystack international-payment configuration before activating live checkout.</p>
 
 <input type="email" id="payEmail" placeholder="Enter your email address" style="width:100%;margin:10px 0;padding:12px;border-radius:8px;border:1px solid #ffffff33;background:#08111f;color:white;">
 
@@ -14,7 +14,7 @@ function order(i){let p=P[i];orderBody.innerHTML=`<p class="eyebrow">YOUR ORDER<
 setTimeout(()=>{
 
 remote.onchange=()=>{
-total.textContent=remote.checked?'$14.99':'$4.99';
+total.textContent=remote.checked?'$'+(price+10).toFixed(2):'$'+price.toFixed(2);
 };
 
 continuePay.onclick=()=>{
@@ -31,7 +31,7 @@ payEmail.focus();
 return;
 }
 
-let amount=remote.checked?1499:499;
+let amount=remote.checked?Math.round((price+10)*100):Math.round(price*100);
 
 const popup=new PaystackPop();
 
@@ -82,7 +82,7 @@ payEmail.focus();
 return;
 }
 
-let amount=remote.checked?14.99:4.99;
+let amount=remote.checked?price+10:price;
 
 if(typeof FlutterwaveCheckout!=='function'){
 alert('Flutterwave checkout is still loading. Please try again.');
